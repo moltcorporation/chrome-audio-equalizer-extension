@@ -16,7 +16,7 @@ body {
 #app {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .header {
@@ -44,6 +44,96 @@ body {
   background: #c0392b;
 }
 
+/* Account section */
+.account-section {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.account-free {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.email-input {
+  padding: 6px 8px;
+  background: #0f3460;
+  color: #eee;
+  border: 1px solid #16213e;
+  border-radius: 4px;
+  font-size: 12px;
+  outline: none;
+}
+
+.email-input:focus {
+  border-color: #3498db;
+}
+
+.email-input::placeholder {
+  color: #666;
+}
+
+.upgrade-btn {
+  padding: 8px;
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.upgrade-btn:hover {
+  background: linear-gradient(135deg, #e67e22, #d35400);
+}
+
+.upgrade-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.account-pro {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pro-badge {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+.pro-email {
+  font-size: 12px;
+  color: #bbb;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.logout-btn:hover {
+  color: #e74c3c;
+}
+
+/* Presets */
 .presets {
   display: flex;
   flex-direction: column;
@@ -56,7 +146,13 @@ body {
   color: #bbb;
 }
 
+.preset-row {
+  display: flex;
+  gap: 6px;
+}
+
 .presets select {
+  flex: 1;
   padding: 6px 8px;
   background: #0f3460;
   color: #eee;
@@ -70,6 +166,42 @@ body {
   border-color: #3498db;
 }
 
+.save-preset-btn {
+  padding: 6px 10px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.save-preset-btn:hover {
+  background: #219a52;
+}
+
+/* Site profile */
+.site-profile-section {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.site-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #bbb;
+  cursor: pointer;
+}
+
+.site-toggle input[type="checkbox"] {
+  accent-color: #f39c12;
+}
+
+/* Volume */
 .volume-control {
   display: flex;
   flex-direction: column;
@@ -111,6 +243,7 @@ body {
   border: none;
 }
 
+/* EQ sliders */
 .eq-sliders {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

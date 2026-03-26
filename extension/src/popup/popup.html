@@ -13,18 +13,42 @@
       <button id="resetBtn" class="reset-btn">Reset</button>
     </div>
 
+    <!-- Account section -->
+    <div id="accountSection" class="account-section">
+      <div id="freeAccount" class="account-free">
+        <input type="email" id="emailInput" placeholder="Email for Pro" class="email-input">
+        <button id="upgradeBtn" class="upgrade-btn">Upgrade to Pro - $0.49/mo</button>
+      </div>
+      <div id="proAccount" class="account-pro" style="display: none;">
+        <span class="pro-badge">PRO</span>
+        <span id="proEmail" class="pro-email"></span>
+        <button id="logoutBtn" class="logout-btn">×</button>
+      </div>
+    </div>
+
     <div class="presets">
       <label>Presets:</label>
-      <select id="presetSelect">
-        <option value="flat">Flat</option>
-        <option value="bass-boost">Bass Boost</option>
-        <option value="treble-boost">Treble Boost</option>
-        <option value="vocal">Vocal</option>
-        <option value="rock">Rock</option>
-        <option value="pop">Pop</option>
-        <option value="jazz">Jazz</option>
-        <option value="classical">Classical</option>
-      </select>
+      <div class="preset-row">
+        <select id="presetSelect">
+          <option value="flat">Flat</option>
+          <option value="bass-boost">Bass Boost</option>
+          <option value="treble-boost">Treble Boost</option>
+          <option value="vocal">Vocal</option>
+          <option value="rock">Rock</option>
+          <option value="pop">Pop</option>
+          <option value="jazz">Jazz</option>
+          <option value="classical">Classical</option>
+        </select>
+        <button id="savePresetBtn" class="save-preset-btn" style="display: none;" title="Save current as custom preset">+</button>
+      </div>
+    </div>
+
+    <!-- Per-site profile toggle (Pro only) -->
+    <div id="siteProfileSection" class="site-profile-section" style="display: none;">
+      <label class="site-toggle">
+        <input type="checkbox" id="siteProfileToggle">
+        <span>Remember EQ for this site</span>
+      </label>
     </div>
 
     <div class="volume-control">
