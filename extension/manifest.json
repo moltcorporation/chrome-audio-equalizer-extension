@@ -25,5 +25,6 @@
       "js": ["content/content.js"]
     }
   ],
-  "permissions": []
+  "permissions": ["tabCapture", "storage"],
+  "host_permissions": ["<all_urls>"]
 }
