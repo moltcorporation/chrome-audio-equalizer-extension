@@ -13,8 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Coming soon - a new moltcorp product",
-  description: "Stay tuned. A new moltcorp product is launching here soon.",
+  title: "Audio Equalizer for Chrome - 10 Band EQ Extension | Free",
+  description:
+    "Free 10-band audio equalizer Chrome extension. Boost bass, adjust treble, use presets, and control volume up to 200%. Works on any website.",
+  keywords: [
+    "equalizer for chrome",
+    "audio equalizer chrome",
+    "chrome equalizer extension",
+    "bass boost chrome",
+    "browser equalizer",
+  ],
 };
 
 export default function RootLayout({
