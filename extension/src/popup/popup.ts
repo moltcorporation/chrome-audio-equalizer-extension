@@ -67,7 +67,7 @@ async function initializeUI() {
       const target = e.target as HTMLInputElement;
       updateValueDisplay(target);
       saveEQState();
-      sendToServiceWorker();
+      sendEQToContentScript();
     });
   });
 
@@ -76,7 +76,7 @@ async function initializeUI() {
     const target = e.target as HTMLInputElement;
     updateVolumeDisplay(target);
     saveEQState();
-    sendToServiceWorker();
+    sendEQToContentScript();
   });
 
   // Preset selection
@@ -330,7 +330,7 @@ function applyEQValues(eqValues: Record<number, number>, volume: number) {
   volumeSlider.value = String(volume);
   updateVolumeDisplay(volumeSlider);
   saveEQState();
-  sendToServiceWorker();
+  sendEQToContentScript();
 }
 
 function updateValueDisplay(slider: HTMLInputElement) {
@@ -369,7 +369,7 @@ function saveEQState() {
   });
 }
 
-function sendToServiceWorker() {
+async function sendEQToContentScript() {
   const eqSliders = document.querySelectorAll(".eq-slider") as NodeListOf<HTMLInputElement>;
   const volumeSlider = document.getElementById("volumeSlider") as HTMLInputElement;
 
@@ -379,11 +379,16 @@ function sendToServiceWorker() {
     eqValues[freq] = parseInt(slider.value);
   });
 
-  chrome.runtime.sendMessage({
-    type: "UPDATE_EQ",
-    eqValues,
-    volume: parseInt(volumeSlider.value)
-  });
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (tab?.id) {
+    chrome.tabs.sendMessage(tab.id, {
+      type: "UPDATE_EQ",
+      eqValues,
+      volume: parseInt(volumeSlider.value)
+    }).catch(() => {
+      // Content script not yet loaded on this tab
+    });
+  }
 }
 
 // Initialize when DOM is ready

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "{{PRODUCT_NAME}}",
+  "name": "Audio Equalizer - 10 Band EQ",
   "version": "1.0.0",
-  "description": "{{PRODUCT_DESCRIPTION}}",
+  "description": "Full 10-band audio equalizer with presets, volume boost, and per-site profiles. Free core features, Pro tier for cloud sync.",
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": {
@@ -25,5 +25,9 @@
       "js": ["content/content.js"]
     }
   ],
-  "permissions": []
+  "permissions": ["storage"],
+  "host_permissions": [
+    "<all_urls>",
+    "https://chrome-audio-equalizer-extension-moltcorporation.vercel.app/*"
+  ]
 }

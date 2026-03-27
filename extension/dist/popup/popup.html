@@ -4,12 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="popup.css">
-  <title>{{PRODUCT_NAME}}</title>
+  <title>Audio Equalizer</title>
 </head>
 <body>
   <div id="app">
-    <h1>{{PRODUCT_NAME}}</h1>
-    <p>Your extension is running.</p>
+    <div class="header">
+      <h1>Audio Equalizer</h1>
+      <button id="resetBtn" class="reset-btn">Reset</button>
+    </div>
+
+    <!-- Account section -->
+    <div id="accountSection" class="account-section">
+      <div id="freeAccount" class="account-free">
+        <input type="email" id="emailInput" placeholder="Email for Pro" class="email-input">
+        <button id="upgradeBtn" class="upgrade-btn">Upgrade to Pro - $0.49/mo</button>
+      </div>
+      <div id="proAccount" class="account-pro" style="display: none;">
+        <span class="pro-badge">PRO</span>
+        <span id="proEmail" class="pro-email"></span>
+        <button id="logoutBtn" class="logout-btn">×</button>
+      </div>
+    </div>
+
+    <div class="presets">
+      <label>Presets:</label>
+      <div class="preset-row">
+        <select id="presetSelect">
+          <option value="flat">Flat</option>
+          <option value="bass-boost">Bass Boost</option>
+          <option value="treble-boost">Treble Boost</option>
+          <option value="vocal">Vocal</option>
+          <option value="rock">Rock</option>
+          <option value="pop">Pop</option>
+          <option value="jazz">Jazz</option>
+          <option value="classical">Classical</option>
+        </select>
+        <button id="savePresetBtn" class="save-preset-btn" style="display: none;" title="Save current as custom preset">+</button>
+      </div>
+    </div>
+
+    <!-- Per-site profile toggle (Pro only) -->
+    <div id="siteProfileSection" class="site-profile-section" style="display: none;">
+      <label class="site-toggle">
+        <input type="checkbox" id="siteProfileToggle">
+        <span>Remember EQ for this site</span>
+      </label>
+    </div>
+
+    <div class="volume-control">
+      <label>Volume: <span id="volumeValue">0</span>dB</label>
+      <input type="range" id="volumeSlider" min="-20" max="20" value="0" step="1">
+    </div>
+
+    <div class="eq-sliders">
+      <div class="slider-group">
+        <label>31Hz</label>
+        <input type="range" class="eq-slider" data-freq="31" min="-12" max="12" value="0" step="1">
+        <span class="eq-value">0</span>
+      </div>
+      <div class="slider-group">
+        <label>63Hz</label>
+        <input type="range" class="eq-slider" data-freq="63" min="-12" max="12" value="0" step="1">
+        <span class="eq-value">0</span>
+      </div>
+      <div class="slider-group">
+        <label>125Hz</label>
+        <input type="range" class="eq-slider" data-freq="125" min="-12" max="12" value="0" step="1">
+        <span class="eq-value">0</span>
+      </div>
+      <div class="slider-group">
+        <label>250Hz</label>
+        <input type="range" class="eq-slider" data-freq="250" min="-12" max="12" value="0" step="1">
+        <span class="eq-value">0</span>
+      </div>
+      <div class="slider-group">
+        <label>500Hz</label>
+        <input type="range" class="eq-slider" data-freq="500" min="-12" max="12" value="0" step="1">
+        <span class="eq-value">0</span>
+      </div>
+      <div class="slider-group">
+        <label>1kHz</label>
+        <input type="range" class="eq-slider" data-freq="1000" min="-12" max="12" value="0" step="1">
+        <span class="eq-value">0</span>
+      </div>
+      <div class="slider-group">
+        <label>2kHz</label>
+        <input type="range" class="eq-slider" data-freq="2000" min="-12" max="12" value="0" step="1">
+        <span class="eq-value">0</span>
+      </div>
+      <div class="slider-group">
+        <label>4kHz</label>
+        <input type="range" class="eq-slider" data-freq="4000" min="-12" max="12" value="0" step="1">
+        <span class="eq-value">0</span>
+      </div>
+      <div class="slider-group">
+        <label>8kHz</label>
+        <input type="range" class="eq-slider" data-freq="8000" min="-12" max="12" value="0" step="1">
+        <span class="eq-value">0</span>
+      </div>
+      <div class="slider-group">
+        <label>16kHz</label>
+        <input type="range" class="eq-slider" data-freq="16000" min="-12" max="12" value="0" step="1">
+        <span class="eq-value">0</span>
+      </div>
+    </div>
   </div>
   <script src="popup.js"></script>
 </body>

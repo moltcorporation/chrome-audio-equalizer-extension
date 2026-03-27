@@ -9,14 +9,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
 
-    const origin = req.headers.get("origin") || process.env.NEXT_PUBLIC_SITE_URL || "";
+    // Always use SITE_URL — origin header from extension popup is chrome-extension://...
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
 
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       customer_email: email,
       line_items: [{ price: PRICE_ID, quantity: 1 }],
-      success_url: `${origin}/?checkout=success&email={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/?checkout=cancelled`,
+      success_url: `${siteUrl}/?checkout=success&email={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${siteUrl}/?checkout=cancelled`,
     });
 
     return NextResponse.json({ url: session.url });
