@@ -4,6 +4,8 @@ import { db } from "@/db";
 import { subscriptions } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: NextRequest) {
   const body = await req.text();
   const sig = req.headers.get("stripe-signature");
