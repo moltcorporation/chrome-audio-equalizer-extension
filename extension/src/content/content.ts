@@ -36,7 +36,7 @@ function createFilterChain() {
     filter.Q.value = 1.0;
     filter.gain.value = 0;
     filter.connect(currentNode);
-    filterChain.unshift(filter);
+    filterChain.push(filter);
     currentNode = filter;
   }
 }
@@ -52,7 +52,7 @@ function processAudioElement(element: HTMLMediaElement) {
   try {
     const source = ctx.createMediaElementAudioSourceNode(element);
     if (filterChain.length > 0) {
-      source.connect(filterChain[0]);
+      source.connect(filterChain[filterChain.length - 1]);
     } else {
       source.connect(ctx.destination);
     }
