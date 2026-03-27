@@ -52,12 +52,12 @@ function processAudioElement(element: HTMLMediaElement) {
   try {
     const source = ctx.createMediaElementAudioSourceNode(element);
     if (filterChain.length > 0) {
-      source.connect(filterChain[filterChain.length - 1]);
+      source.connect(filterChain[0]);
     } else {
       source.connect(ctx.destination);
     }
   } catch (error) {
-    console.error("Error processing audio element:", error);
+    // createMediaElementAudioSourceNode throws if already connected — safe to ignore
   }
 }
 
@@ -88,10 +88,17 @@ function updateEQFilters(eqValues: Record<number, number>, volume: number) {
   });
 }
 
-// Listen for messages from service worker
+// Listen for messages from popup or service worker
 chrome.runtime.onMessage.addListener((request) => {
   if (request.type === "UPDATE_EQ") {
     updateEQFilters(request.eqValues, request.volume);
+  }
+});
+
+// Load saved EQ state on init so navigating doesn't reset the EQ
+chrome.storage.sync.get(["eqValues", "volume"], (data) => {
+  if (data.eqValues) {
+    updateEQFilters(data.eqValues, data.volume ?? 0);
   }
 });
 
@@ -108,5 +115,3 @@ observer.observe(document.documentElement, {
 
 // Process existing elements
 processAllAudioElements();
-
-console.log("Audio Equalizer content script loaded");
