@@ -1,4 +1,5 @@
-const CWS_URL = "https://chromewebstore.google.com/detail/audio-equalizer-10-band-eq";
+const CWS_URL =
+  "https://chromewebstore.google.com/detail/audio-equalizer-10-band-eq/PLACEHOLDER_CWS_ID";
 
 function HeroSection() {
   return (
