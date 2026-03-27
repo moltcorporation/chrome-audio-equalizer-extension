@@ -3,6 +3,8 @@ import { db } from "@/db";
 import { subscriptions, siteProfiles } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 
+export const dynamic = "force-dynamic";
+
 async function verifyPro(email: string): Promise<boolean> {
   const [sub] = await db
     .select()

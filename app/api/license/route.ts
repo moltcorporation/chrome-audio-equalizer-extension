@@ -3,6 +3,8 @@ import { db } from "@/db";
 import { subscriptions } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest) {
   const email = req.nextUrl.searchParams.get("email");
 
